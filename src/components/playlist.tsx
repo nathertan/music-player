@@ -13,8 +13,10 @@ interface PlaylistProps {
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 const PLAYLIST_ID = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
-
-const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&palylistId=${PLAYLIST_ID}&key=${API_KEY}`;
+const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`;
+// console.log(API_KEY);
+// console.log(PLAYLIST_ID);
+console.log(API_URL);
 
 const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
     const [videos, setVideos] = useState<Video[]>([]);
