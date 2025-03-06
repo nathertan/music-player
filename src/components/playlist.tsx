@@ -28,7 +28,7 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 const fetchedVideos = response.data.items.map((item: any) => ({
                     title: item.snippet.title,
                     videoId: item.snippet.resourceId.videoId,
-                    thumbnail: item.snippet.thumbnails.default.url,
+                    thumbnail: item.snippet.thumbnails.standard.url,
                 }));
                 setVideos(fetchedVideos);
             } catch (error) {
@@ -36,18 +36,20 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
             }
         };
         fetchPlaylist();
+        
     }, []);
 
     return (
         <div className="playlist">
             {videos.map((video) => (
                 <div key ={video.videoId} className="playlist-item" onClick={() => onVideoSelect(video.videoId)}>
-                    <img src="{video.thumbnail" alt="video.title" />
+                    <img src={video.thumbnail} alt={video.title}g />
                     <p>{video.title}</p>
                 </div>
             ))}
         </div>
     );
 };
+
 
 export default Playlist;
