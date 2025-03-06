@@ -22,6 +22,7 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
     const [videos, setVideos] = useState<Video[]>([]);
 
     useEffect(() => {
+
         const fetchPlaylist = async () => {
             try {
                 const response = await axios.get(API_URL);
@@ -47,7 +48,7 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
         <div className="playlist">
             {videos.map((video) => (
                 <div key ={video.videoId} className="playlist-item" onClick={() => onVideoSelect(video.videoId)}>
-                    <img src={video.thumbnail} alt={video.title}g />
+                    <img src={video.thumbnail} alt={video.title} />
                     <p>{video.title}</p>
                 </div>
             ))}
