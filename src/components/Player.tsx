@@ -3,13 +3,14 @@ import ReactPlayer from "react-player";
 
 interface PlayerProps {
     videoId: string;
-}
+  }
 
 const Player: React.FC<PlayerProps> = ({ videoId }) => {
+
     const playerRef = useRef<ReactPlayer>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
-
+    
     //Play/pause toggle
     const togglePlayPause = () => {
         setPlaying((prev) => !prev);

@@ -1,18 +1,32 @@
 import React, {useState} from "react";
-import DefaultPlayer from "./components/YoutubePlayer";
+// import DefaultPlayer from "./components/YoutubePlayer";
 import Player from "./components/Player";
 import Playlist from "./components/playlist";
 import "./index.css";
 
 const App: React.FC = () => {
-  const[currentVideo, setCurrentVideo] = useState<string | null>(null);
+  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
 
+  //set video on select
+  const handleVideoSelect = (videoId: string) => {
+    setCurrentVideo(videoId);
+  }
+
+  // //move to next video 
+  // const nextVideo = () => {
+  // setCurrentIndex((prevIndex) => (prevIndex + 1) % playlist.length);
+  // console.log(nextVideo);
+  // };
+  
   return (
     <div className="app">
       <h1>Kamu Wibu</h1>
-      {currentVideo ? <DefaultPlayer videoId={currentVideo} /> : <p>Select a video to play</p>}
-      {currentVideo ? <Player videoId={currentVideo} /> : <p>Select a video to play</p>}
-      <Playlist onVideoSelect={setCurrentVideo} />
+      {currentVideo ? (
+        <Player videoId={currentVideo} /> // Pass the selected videoId to Player
+      ) : (
+        <p>Select a video to play</p>
+      )}
+      <Playlist onVideoSelect={handleVideoSelect} />
     </div>
   );
 };
