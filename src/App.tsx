@@ -21,11 +21,13 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <h1>Kamu Wibu</h1>
+      <div className="player-wrapper">
       {currentVideo ? (
         <Player videoId={currentVideo} /> // Pass the selected videoId to Player
       ) : (
         <p>Select a video to play</p>
       )}
+      </div>
       <Playlist onVideoSelect={handleVideoSelect} />
     </div>
   );
