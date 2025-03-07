@@ -7,7 +7,7 @@ interface PlayerProps {
 
 const Player: React.FC<PlayerProps> = ({ videoId }) => {
     const playerRef = useRef<ReactPlayer>(null);
-    const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
 
     //Play/pause toggle
@@ -30,6 +30,7 @@ const Player: React.FC<PlayerProps> = ({ videoId }) => {
         playerRef.current.seekTo(newTime / 100);
     };
 
+    //autoplaying new video and resets progress bar
     useEffect(() => {
         setProgress(0);
         setPlaying(true); //autoplays new vid
@@ -40,7 +41,7 @@ const Player: React.FC<PlayerProps> = ({ videoId }) => {
             {/* Hidden youtube player */}
             <ReactPlayer
                 ref={playerRef}
-                url={`https://www.youtube.com/watch?v=$(videoId)`}
+                url={`https://www.youtube.com/watch?v=${videoId}`}
                 playing={playing}
                 controls={false} // hide default controls
                 //hide video
