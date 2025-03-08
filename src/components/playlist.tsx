@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Video {
@@ -8,8 +8,8 @@ interface Video {
 }
 
 interface PlaylistProps {
-    onVideoSelect: (video: {videoId: string; title: string}) => void;
-    getNextVideo: (currentVideoid: string) => {videoId: string; title: string} | null;
+    onVideoSelect: (videoId: { videoId: string; title: string }) => void;
+    getNextVideo: (currentVideoid: string) => { videoId: string; title: string } | null;
 }
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
@@ -36,24 +36,25 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 let shuffledVideos = fetchedVideos.sort(() => Math.random() - 0.5);
                 setVideos(shuffledVideos);
                 console.log(shuffledVideos);
+                console.log(shuffledVideos[0].videoId);
             } catch (error) {
                 console.error("Error fetching playlist:", error);
             }
         };
         //run the playlist get
         fetchPlaylist();
-        
+
     }, []);
 
     return (
         <div className="playlist">
             {videos.map((video) => (
-                <div 
-                 key ={video.videoId} 
-                 className="playlist-item"
-                 data-videoid={video.videoId}
-                 data-title={video.title}
-                 onClick={() => onVideoSelect({videoId: video.videoId, title: video.title})}>
+                <div
+                    key={video.videoId}
+                    className="playlist-item"
+                    data-videoid={video.videoId}
+                    data-title={video.title}
+                    onClick={() => onVideoSelect({ videoId: video.videoId, title: video.title })}>
                     <img src={video.thumbnail} alt={video.title} />
                     <p>{video.title}</p>
                 </div>
