@@ -5,12 +5,7 @@ import Playlist from "./components/playlist";
 import "./index.css";
 
 const App: React.FC = () => {
-  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
-
-  //set video on select
-  const handleVideoSelect = (videoId: string) => {
-    setCurrentVideo(videoId);
-  }
+  const [currentVideo, setCurrentVideo] = useState<{ videoId: string; title: string } | null>(null);
 
   // //move to next video 
   // const nextVideo = () => {
@@ -20,15 +15,17 @@ const App: React.FC = () => {
   
   return (
     <div className="app">
-      <h1>Kamu Wibu</h1>
+      <h1>
+        {currentVideo ? `Now Playing: ${currentVideo.title}` : "Select a video to play"}
+      </h1>
       <div className="player-wrapper">
       {currentVideo ? (
-        <Player videoId={currentVideo} /> // Pass the selected videoId to Player
+        <Player videoId={currentVideo.videoId} /> // Pass the selected videoId to Player
       ) : (
         <p>Select a video to play</p>
       )}
       </div>
-      <Playlist onVideoSelect={handleVideoSelect} />
+      <Playlist onVideoSelect={setCurrentVideo} />
     </div>
   );
 };

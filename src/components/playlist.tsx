@@ -9,7 +9,7 @@ interface Video {
 
 interface PlaylistProps {
     // onPlaylistLoad: (videoId: string) => void;
-    onVideoSelect: (videoId: string) => void;
+    onVideoSelect: (video: {videoId: string; title: string}) => void;
 }
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
@@ -50,7 +50,7 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 <div 
                  key ={video.videoId} 
                  className="playlist-item"
-                 onClick={() => onVideoSelect(video.videoId)}
+                 onClick={() => onVideoSelect({videoId: video.videoId, title: video.title})}
                  >
                     <img src={video.thumbnail} alt={video.title} />
                     <p>{video.title}</p>
