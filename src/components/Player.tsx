@@ -3,13 +3,15 @@ import ReactPlayer from "react-player";
 
 interface PlayerProps {
     videoId: string;
+    onNext: () => void;
   }
 
-const Player: React.FC<PlayerProps> = ({ videoId }) => {
+const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
 
     const playerRef = useRef<ReactPlayer>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
+    
     
     //Play/pause toggle
     const togglePlayPause = () => {
@@ -31,12 +33,6 @@ const Player: React.FC<PlayerProps> = ({ videoId }) => {
         playerRef.current.seekTo(newTime / 100);
     };
 
-    //autoplaying new video and resets progress bar
-    useEffect(() => {
-        setProgress(0);
-        setPlaying(true); //autoplays new vid
-    }, [videoId]);
-
     return (
         <div className="custom-player">
             {/* Hidden youtube player */}
@@ -49,6 +45,7 @@ const Player: React.FC<PlayerProps> = ({ videoId }) => {
                 width="0px"
                 height="0px"
                 onProgress={handleProgress}
+                onEnded={onNext}
             />
 
             {/* New controls */}

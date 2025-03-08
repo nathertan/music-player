@@ -8,8 +8,8 @@ interface Video {
 }
 
 interface PlaylistProps {
-    // onPlaylistLoad: (videoId: string) => void;
     onVideoSelect: (video: {videoId: string; title: string}) => void;
+    getNextVideo: (currentVideoid: string) => {videoId: string; title: string} | null;
 }
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
@@ -33,8 +33,9 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 }));
 
                 //shuffling playlist
-                fetchedVideos = fetchedVideos.sort(() => Math.random() - 0.5);
-                setVideos(fetchedVideos);
+                let shuffledVideos = fetchedVideos.sort(() => Math.random() - 0.5);
+                setVideos(shuffledVideos);
+                console.log(shuffledVideos);
             } catch (error) {
                 console.error("Error fetching playlist:", error);
             }
@@ -50,8 +51,9 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 <div 
                  key ={video.videoId} 
                  className="playlist-item"
-                 onClick={() => onVideoSelect({videoId: video.videoId, title: video.title})}
-                 >
+                 data-videoid={video.videoId}
+                 data-title={video.title}
+                 onClick={() => onVideoSelect({videoId: video.videoId, title: video.title})}>
                     <img src={video.thumbnail} alt={video.title} />
                     <p>{video.title}</p>
                 </div>

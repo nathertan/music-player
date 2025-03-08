@@ -12,6 +12,23 @@ const App: React.FC = () => {
   // setCurrentIndex((prevIndex) => (prevIndex + 1) % playlist.length);
   // console.log(nextVideo);
   // };
+  const getNextVideo = (currentVideoId: string) => {
+    const playlistItems = document.querySelectorAll(".playlist-item");
+    let found = false;
+
+    for (let item of playlistItems) {
+      if (found) {
+        return {
+          videoId: item.getAttribute("data-videoid")!,
+          title: item.getAttribute("data-title")!,
+        };
+      }
+      if (item.getAttribute("data-videoid") === currentVideoId) {
+        found = true;
+      }
+    }
+    return null;
+  };
   
   return (
     <div className="app">
@@ -20,12 +37,19 @@ const App: React.FC = () => {
       </h1>
       <div className="player-wrapper">
       {currentVideo ? (
-        <Player videoId={currentVideo.videoId} /> // Pass the selected videoId to Player
+        <Player videoId={currentVideo.videoId} 
+          onNext={() => {
+            const nextVideo = getNextVideo(currentVideo.videoId);
+            if(nextVideo) {
+              setCurrentVideo(nextVideo);
+            }
+          }}
+        /> // Pass the selected videoId to Player
       ) : (
         <p>Select a video to play</p>
       )}
       </div>
-      <Playlist onVideoSelect={setCurrentVideo} />
+      <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
     </div>
   );
 };
