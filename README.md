@@ -7,3 +7,5 @@ for setup:
 npm install
 npm run dev
 ```
+
+P.S. Fetch your own playlist and API! currently using Youtube API and my personal Playlist.
