@@ -32,23 +32,25 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <h1>
-        {currentVideo ? `Now Playing: ${currentVideo.title}` : "Select a video to play"}
-      </h1>
       <div className="app-wrapper">
         <div className="player-wrapper">
-          {currentVideo ? (
-            <Player videoId={currentVideo.videoId}
-              onNext={() => {
-                const nextVideo = getNextVideo(currentVideo.videoId);
-                if (nextVideo) {
-                  setCurrentVideo(nextVideo);
-                }
-              }}
-            /> // Pass the selected videoId to Player
-          ) : (
-            <p>Select a video to play</p>
-          )}
+          <h1>
+          {currentVideo ? `Now Playing: ${currentVideo.title}` : "Select a video to play"}
+          </h1>
+          <div className="player">
+            {currentVideo ? (
+              <Player videoId={currentVideo.videoId}
+                onNext={() => {
+                  const nextVideo = getNextVideo(currentVideo.videoId);
+                  if (nextVideo) {
+                    setCurrentVideo(nextVideo);
+                  }
+                }}
+              /> // Pass the selected videoId to Player
+            ) : (
+              <p>Select a video to play</p>
+            )}
+          </div>
         </div>
         <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
       </div>
