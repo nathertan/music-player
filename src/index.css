@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 95vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .playlist-item {
@@ -20,7 +23,7 @@
   cursor: pointer;
   padding: 10px;
   border-bottom: 1px solid #ddd;
-  width: 60%;
+  width: 100%;
 }
 
 .playlist-item img {
@@ -46,6 +49,7 @@
 }
 
 .player-wrapper {
+  /* position: sticky; */
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -68,6 +72,7 @@
   display: flex;
   flex-direction: row;
   max-width: 100%;
+  overflow-y: hidden;
 }
 
 .controls {
