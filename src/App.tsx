@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import DefaultPlayer from "./components/YoutubePlayer";
 import Player from "./components/Player";
 import Playlist from "./components/playlist";
@@ -6,7 +6,18 @@ import "./index.css";
 
 const App: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<{ videoId: string; title: string } | null>(null);
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  // dark mode toggle, todo: learn state management
+  const [darkMode, setDarkMode] = useState<boolean>(
+    localStorage.getItem("darkMode") === "true"
+  );
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   const getNextVideo = (currentVideoId: string) => {
     const playlistItems = document.querySelectorAll(".playlist-item");
@@ -27,15 +38,20 @@ const App: React.FC = () => {
   };
 
   const DarkModeToggle = () => {
-    setDarkMode((prev) => !prev);
-    document.body.classList.toggle("dark");
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      localStorage.setItem("darkMode", String(newMode));
+      return newMode;
+    });
   };
 
   return (
+    //embedding darkMode to app class so it could be used globally
     <div className={`app ${darkMode ? "dark" : ""}`}>
       <button onClick={DarkModeToggle} className="dark-mode">
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
+
       <div className="app-wrapper">
         <div className="player-wrapper">
           <h1>
