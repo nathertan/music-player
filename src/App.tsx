@@ -11,6 +11,7 @@ const App: React.FC = () => {
     localStorage.getItem("darkMode") === "true"
   );
 
+  // use Effect modification so it would add and remove "dark" from local storage, so there are no doubles.
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark");
@@ -19,6 +20,7 @@ const App: React.FC = () => {
     }
   }, [darkMode]);
 
+  // Function to find which video is next, it loops through playlist items, it tries to match the current videoId with the list, if matched, it will break the loop on the next iteration and returns the next videoID to be passed through 
   const getNextVideo = (currentVideoId: string) => {
     const playlistItems = document.querySelectorAll(".playlist-item");
     let found = false;
@@ -48,31 +50,40 @@ const App: React.FC = () => {
   return (
     //embedding darkMode to app class so it could be used globally
     <div className={`app ${darkMode ? "dark" : ""}`}>
+      {/* Button for toggling dark mode */}
       <button onClick={DarkModeToggle} className="dark-mode">
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
 
       <div className="app-wrapper">
         <div className="player-wrapper">
+
+          {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
           <h1>
             {currentVideo ? `Now Playing: ${currentVideo.title}` : "Select a video to play"}
           </h1>
+
           <div className="player">
+            {/* If else on the player, If theres something playing it will show media controls and progress bar, else it will asks user to select a video from the playlist */}
             {currentVideo ? (
               <Player videoId={currentVideo.videoId}
                 onNext={() => {
+                  //use nextVideo to get next videoId
                   const nextVideo = getNextVideo(currentVideo.videoId);
+                  // Pass the selected videoId to Player
                   if (nextVideo) {
                     setCurrentVideo(nextVideo);
                   }
                 }}
-              /> // Pass the selected videoId to Player
+              />
             ) : (
               <p>Select a video to play</p>
             )}
           </div>
         </div>
-        <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
+        <div>
+          <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
+        </div>
       </div>
     </div>
   );
