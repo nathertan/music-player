@@ -3,6 +3,23 @@
   font-family: Arial, sans-serif;
 }
 
+body.dark {
+  background-color: #121212;
+  color:white;
+}
+
+.dark-mode-toggle {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* .dark .dark-mode-toggle {
+  background-color: #ffffff;
+  color: #000000;
+} */
+
 .player-container {
   margin: 20px auto;
   max-width: 640px;
@@ -33,7 +50,11 @@
 }
 
 .playlist-item:hover {
-  background-color: #f0f0f0;
+  background-color: #e0e0e0;
+}
+
+.dark .playlist-item:hover {
+  background-color: #444;
 }
 
 .custom-player {
@@ -54,7 +75,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  width: 50vw;
   height: 90vh;
 }
 
