@@ -32,6 +32,15 @@ body.dark {
   height: 95vh;
   overflow-y: scroll;
   overflow-x: hidden;
+  /* hides firefox scrollbar */
+  scrollbar-width: none;
+  /* hides IE and edge scrollbar */
+  -ms-overflow-style: none;
+}
+
+.playlist ::-webkit-scrollbar {
+  /* hides chrome scrollbar */
+  display: none;
 }
 
 .playlist-item {
