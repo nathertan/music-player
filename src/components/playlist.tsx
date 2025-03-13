@@ -17,7 +17,7 @@ const PLAYLIST_ID = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
 const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=${PLAYLIST_ID}&key=${API_KEY}`;
 // console.log(API_KEY);
 // console.log(PLAYLIST_ID);
-console.log(API_URL);
+// console.log(API_URL);
 
 const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
     const [videos, setVideos] = useState<Video[]>([]);
@@ -35,8 +35,8 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 //shuffling playlist
                 let shuffledVideos = fetchedVideos.sort(() => Math.random() - 0.5);
                 setVideos(shuffledVideos);
-                console.log(shuffledVideos);
-                console.log(shuffledVideos[0].videoId);
+                // console.log(shuffledVideos);
+                // console.log(shuffledVideos[0].videoId);
             } catch (error) {
                 console.error("Error fetching playlist:", error);
             }
