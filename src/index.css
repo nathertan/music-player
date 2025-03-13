@@ -15,11 +15,6 @@ body.dark {
   margin-bottom: 10px;
 }
 
-/* .dark .dark-mode-toggle {
-  background-color: #ffffff;
-  color: #000000;
-} */
-
 .player-container {
   margin: 20px auto;
   max-width: 640px;
@@ -86,6 +81,7 @@ body.dark {
   align-items: center;
   width: 50vw;
   height: 90vh;
+  padding-left: 10vw;
 }
 
 .player {
