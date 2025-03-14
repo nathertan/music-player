@@ -11,6 +11,7 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
     const playerRef = useRef<ReactPlayer>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
+    const [volume, setVolume] = useState(1);
     
     
     //Play/pause toggle
@@ -33,6 +34,10 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
         playerRef.current.seekTo(newTime / 100);
     };
 
+    const ChangeVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setVolume(parseFloat(e.target.value));
+    }
+
     return (
         <div className="custom-player">
             {/* Hidden youtube player */}
@@ -44,6 +49,7 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
                 //hide video
                 width="0px"
                 height="0px"
+                volume={volume}
                 onProgress={handleProgress}
                 onEnded={onNext}
             />
@@ -57,6 +63,16 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
                 <div className="progress-bar" onClick={handleSeek}>
                     <div className="progress" style={{ width: `${progress}%`}}></div>
                 </div>
+
+                <input 
+                    type = "range"
+                    min = "0"
+                    max = "1"
+                    step = "0.05"
+                    value={volume}
+                    onChange={ChangeVolume}
+                    className="volume-sloder"                
+                />
 
             </div>
 

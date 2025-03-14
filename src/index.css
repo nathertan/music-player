@@ -134,3 +134,12 @@ body.dark {
   transition: width 0.1s linear;
 }
 
+.volume-slider {
+  width:auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.dark .volume-slider {
+  filter:brightness(0.6);
+}
