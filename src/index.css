@@ -135,7 +135,7 @@ body.dark {
 }
 
 .volume-slider {
-  width:auto;
+  width:5vw;
   margin-left: 10px;
   cursor: pointer;
 }

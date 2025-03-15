@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 interface PlayerProps {
     videoId: string;
     onNext: () => void;
-  }
+}
 
 const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
 
@@ -12,18 +12,18 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
     const [volume, setVolume] = useState(1);
-    
-    
+
+
     //Play/pause toggle
     const togglePlayPause = () => {
         setPlaying((prev) => !prev);
     };
- 
+
     //Progress bar
-    const handleProgress = (state: { played: number}) => {
+    const handleProgress = (state: { played: number }) => {
         setProgress(state.played * 100);
     };
- 
+
     //Seeking on progress bar
     const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!playerRef.current) return;
@@ -61,17 +61,17 @@ const Player: React.FC<PlayerProps> = ({ videoId, onNext }) => {
                 </button>
 
                 <div className="progress-bar" onClick={handleSeek}>
-                    <div className="progress" style={{ width: `${progress}%`}}></div>
+                    <div className="progress" style={{ width: `${progress}%` }}></div>
                 </div>
 
-                <input 
-                    type = "range"
-                    min = "0"
-                    max = "1"
-                    step = "0.05"
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
                     value={volume}
                     onChange={ChangeVolume}
-                    className="volume-sloder"                
+                    className="volume-slider"
                 />
 
             </div>
