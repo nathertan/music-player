@@ -3,6 +3,15 @@
   font-family: Arial, sans-serif;
 }
 
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 body.dark {
   background-color: #121212;
   color:white;
@@ -20,11 +29,18 @@ body.dark {
   max-width: 640px;
 }
 
+.playlist-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .playlist {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 95vh;
+  height: 30vh;
+  width: 50vw;
   overflow-y: scroll;
   overflow-x: hidden;
   /* hides firefox scrollbar */
@@ -43,7 +59,7 @@ body.dark {
   align-items: center;
   cursor: pointer;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
   width: 100%;
 }
 
@@ -74,14 +90,11 @@ body.dark {
 }
 
 .player-wrapper {
-  /* position: sticky; */
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50vw;
   height: 90vh;
-  padding-left: 10vw;
 }
 
 .player {
@@ -96,7 +109,7 @@ body.dark {
 
 .app-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 100%;
   overflow-y: hidden;
 }
