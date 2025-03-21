@@ -60,10 +60,10 @@ const App: React.FC = () => {
         <div className="player-wrapper">
 
           {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
-          <h1>
+          <h1 className="player-header">
             {currentVideo ? (
               <>
-              <img src={currentVideo.thumbnail} alt={currentVideo.title} className="player-thumbnail" />
+              <img src={currentVideo.thumbnail} alt={currentVideo.title} className="player-thumbnail" width = "640px" />
               Now Playing: {currentVideo.title}              
               </>
               ) : ( 
