@@ -5,7 +5,7 @@ import Playlist from "./components/playlist";
 import "./index.css";
 
 const App: React.FC = () => {
-  const [currentVideo, setCurrentVideo] = useState<{ videoId: string; title: string } | null>(null);
+  const [currentVideo, setCurrentVideo] = useState<{ videoId: string; title: string; thumbnail: string } | null>(null);
   // dark mode toggle, todo: learn state management
   const [darkMode, setDarkMode] = useState<boolean>(
     localStorage.getItem("darkMode") === "true"
@@ -30,6 +30,7 @@ const App: React.FC = () => {
         return {
           videoId: item.getAttribute("data-videoid")!,
           title: item.getAttribute("data-title")!,
+          thumbnail: item.getAttribute("data-thumbnail")!,
         };
       }
       if (item.getAttribute("data-videoid") === currentVideoId) {
@@ -60,7 +61,14 @@ const App: React.FC = () => {
 
           {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
           <h1>
-            {currentVideo ? `Now Playing: ${currentVideo.title}` : "Select a video to play"}
+            {currentVideo ? (
+              <>
+              <img src={currentVideo.thumbnail} alt={currentVideo.title} className="player-thumbnail" />
+              Now Playing: {currentVideo.title}              
+              </>
+              ) : ( 
+                "Select a video to play"              
+            )}
           </h1>
 
           <div className="player">
@@ -77,7 +85,7 @@ const App: React.FC = () => {
                 }}
               />
             ) : (
-              <p>Select a video to play</p>
+              <p>Choose from dropdown below</p>
             )}
           </div>
         </div>
