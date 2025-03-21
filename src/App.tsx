@@ -74,7 +74,8 @@ const App: React.FC = () => {
           <div className="player">
             {/* If else on the player, If theres something playing it will show media controls and progress bar, else it will asks user to select a video from the playlist */}
             {currentVideo ? (
-              <Player videoId={currentVideo.videoId}
+              <Player 
+                videoId={currentVideo.videoId}
                 onNext={() => {
                   //use nextVideo to get next videoId
                   const nextVideo = getNextVideo(currentVideo.videoId);

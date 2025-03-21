@@ -49,6 +49,7 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                     className="playlist-item"
                     data-videoid={video.videoId}
                     data-title={video.title}
+                    data-thumbnail={video.thumbnail}
                     onClick={() => onVideoSelect({ videoId: video.videoId, title: video.title, thumbnail: video.thumbnail })}>
                     <img src={video.thumbnail} alt={video.title} />
                     <p>{video.title}</p>
