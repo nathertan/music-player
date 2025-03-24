@@ -172,3 +172,7 @@ body.dark {
   object-fit: cover;
   border-radius: 20px;
 }
+
+.thumbnail {
+  transform: scale(1.3);
+}

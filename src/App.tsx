@@ -64,7 +64,9 @@ const App: React.FC = () => {
 
             {currentVideo ? (
               <>
-                <img src={currentVideo.thumbnail} alt={currentVideo.title} className="player-thumbnail" width="640px" />
+                <div className="player-thumbnail">
+                  <img src={currentVideo.thumbnail} alt={currentVideo.title} className="thumbnail" />
+                </div>
                 <div className="player">
                   <h1>{currentVideo.title}</h1>
                   {/* If else on the player, If theres something playing it will show media controls and progress bar, else it will asks user to select a video from the playlist */}
