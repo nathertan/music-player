@@ -32,6 +32,10 @@ const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
                 //shuffling playlist
                 let shuffledVideos = fetchedVideos.sort(() => Math.random() - 0.5);
                 setVideos(shuffledVideos);
+
+                if (shuffledVideos.length > 0) {
+                    onVideoSelect(shuffledVideos[0]);
+                }
             } catch (error) {
                 console.error("Error fetching playlist:", error);
             }

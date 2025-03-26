@@ -82,9 +82,9 @@ const App: React.FC = () => {
                     }}
                   />
                   <div className="playlist-wrapper">
-          <span>Next on List:</span>
-          <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
-        </div>
+                    <span>Next on List:</span>
+                    <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
+                  </div>
                 </div>
               </>
             ) : (

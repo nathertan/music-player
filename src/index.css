@@ -41,8 +41,8 @@ body.dark {
 .playlist {
   display: flex;
   flex-direction: column;
-  height: 30vh;
-  width: 50vw;
+  height: 25vh;
+  width: 40vw;
   overflow-y: scroll;
   overflow-x: hidden;
   /* hides firefox scrollbar */
