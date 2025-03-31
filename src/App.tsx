@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import DefaultPlayer from "./components/YoutubePlayer";
 import Player from "./components/Player";
 import Playlist from "./components/playlist";
 import "./index.css";
