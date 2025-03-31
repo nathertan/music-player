@@ -58,40 +58,39 @@ const App: React.FC = () => {
 
       <div className="app-wrapper">
         <div className="player-wrapper">
-
           {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
-          <div className="player-header">
-
-            {currentVideo ? (
-              <>
-                <div className="player-thumbnail">
-                  <img src={currentVideo.thumbnail} alt={currentVideo.title} className="thumbnail" />
-                </div>
-                <div className="player">
-                  <h1>{currentVideo.title}</h1>
-                  {/* If else on the player, If theres something playing it will show media controls and progress bar, else it will asks user to select a video from the playlist */}
-                  <Player
-                    videoId={currentVideo.videoId}
-                    onNext={() => {
-                      //use nextVideo to get next videoId
-                      const nextVideo = getNextVideo(currentVideo.videoId);
-                      // Pass the selected videoId to Player
-                      if (nextVideo) {
-                        setCurrentVideo(nextVideo);
-                      }
-                    }}
-                  />
-                  <div className="playlist-wrapper">
-                    <span>Next on List:</span>
-                    <Playlist onVideoSelect={setCurrentVideo} getNextVideo={getNextVideo} />
-                  </div>
-                </div>
-              </>
-            ) : (
-              <h1>Select a video to play</h1>
+          <div className="player-thumbnail">
+            {currentVideo && (       
+            <img src={currentVideo.thumbnail} alt={currentVideo.title} className="thumbnail" />
             )}
           </div>
 
+          <div className="player-header">
+                <div className="player">
+                  <h1>{currentVideo ? currentVideo.title : "Select a video to play"}</h1>
+                  {currentVideo &&                   
+                    <Player
+                      videoId={currentVideo.videoId}
+                      onNext={() => {
+                        //use nextVideo to get next videoId
+                        const nextVideo = getNextVideo(currentVideo.videoId);
+                        // Pass the selected videoId to Player
+                        if (nextVideo) {
+                          setCurrentVideo(nextVideo);
+                        }
+                      }}
+                    />
+                  }
+                </div>
+                <div className="playlist-wrapper">
+                    <span>Next on List:</span>
+                    <Playlist 
+                      onVideoSelect={setCurrentVideo}  
+                      getNextVideo={getNextVideo} 
+                    />
+                </div>
+          </div>
+          
         </div>
       </div>
     </div>
