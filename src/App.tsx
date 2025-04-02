@@ -6,6 +6,7 @@ import "./index.css";
 const App: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<{ videoId: string; title: string; thumbnail: string } | null>(null);
   // dark mode toggle, todo: learn state management
+
   const [playlistId, setPlaylistId] = useState<string | null>(null);
   const [userInput, setUserInput] = useState<string>("");
 
