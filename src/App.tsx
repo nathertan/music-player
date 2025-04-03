@@ -78,29 +78,44 @@ const App: React.FC = () => {
           </div>
 
           <div className="player-header">
-            <div className="player">
-              <h1>{currentVideo ? currentVideo.title : "Select a video to play"}</h1>
-              {currentVideo &&
-                <Player
-                  videoId={currentVideo.videoId}
-                  onNext={() => {
-                    //use nextVideo to get next videoId
-                    const nextVideo = getNextVideo(currentVideo.videoId);
-                    // Pass the selected videoId to Player
-                    if (nextVideo) {
-                      setCurrentVideo(nextVideo);
-                    }
-                  }}
+            {!playlistId ? (
+              <div className="playlist-input">
+                <h2>Enter Youtube Playlist Link:</h2>
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  placeholder="Paste Playlist URL here..."
                 />
-              }
-            </div>
-            <div className="playlist-wrapper">
-              <span>Next on List:</span>
-              <Playlist
-                onVideoSelect={setCurrentVideo}
-                getNextVideo={getNextVideo}
-              />
-            </div>
+                <button onClick={inputPlaylist}>Load Playlist</button>
+              </div>
+            ) : (
+              <>
+                <div className="player">
+                  <h1>{currentVideo ? currentVideo.title : "Select a video to play"}</h1>
+                  {currentVideo &&
+                    <Player
+                      videoId={currentVideo.videoId}
+                      onNext={() => {
+                        //use nextVideo to get next videoId
+                        const nextVideo = getNextVideo(currentVideo.videoId);
+                        // Pass the selected videoId to Player
+                        if (nextVideo) {
+                          setCurrentVideo(nextVideo);
+                        }
+                      }}
+                    />
+                  }
+                </div>
+                <div className="playlist-wrapper">
+                  <span>Next on List:</span>
+                  <Playlist
+                    onVideoSelect={setCurrentVideo}
+                    getNextVideo={getNextVideo}
+                  />
+                </div>
+              </>
+            )}
           </div>
 
         </div>
