@@ -110,6 +110,7 @@ const App: React.FC = () => {
                 <div className="playlist-wrapper">
                   <span>Next on List:</span>
                   <Playlist
+                    playlistId={playlistId}
                     onVideoSelect={setCurrentVideo}
                     getNextVideo={getNextVideo}
                   />

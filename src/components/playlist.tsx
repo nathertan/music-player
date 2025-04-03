@@ -8,18 +8,23 @@ interface Video {
 }
 
 interface PlaylistProps {
+    playlistId: string | null;
     onVideoSelect: (videoId: { videoId: string; title: string; thumbnail: string; }) => void;
     getNextVideo: (currentVideoid: string) => { videoId: string; title: string } | null;
 }
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-const PLAYLIST_ID = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
-const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=${PLAYLIST_ID}&key=${API_KEY}`;
+// const PLAYLIST_ID = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
+// const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=${PLAYLIST_ID}&key=${API_KEY}`;
 
-const Playlist: React.FC<PlaylistProps> = ({ onVideoSelect }) => {
+const Playlist: React.FC<PlaylistProps> = ({ playlistId, onVideoSelect }) => {
     const [videos, setVideos] = useState<Video[]>([]);
 
     useEffect(() => {
+        if (!playlistId) return;
+
+        const API_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=${playlistId}&key=${API_KEY}`;
+
         const fetchPlaylist = async () => {
             try {
                 const response = await axios.get(API_URL);
