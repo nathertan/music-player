@@ -1,0 +1,9 @@
+TODO LIST:
+
+- turn off auto shuffle, make it a different stand alone function
+- styling
+    - make the play/pause button a proper button
+    - do better with the progress bar
+    - speaker icon on the volume bar
+    - make the volume bar better (pop out above perhaps(?))
+- make proper media control, make the playlist manageable with next/prev
