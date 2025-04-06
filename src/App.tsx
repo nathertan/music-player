@@ -69,28 +69,36 @@ const App: React.FC = () => {
       </button>
 
       <div className="app-wrapper">
-        <div className="player-wrapper">
-          {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
-          <div className="player-thumbnail">
-            {currentVideo && (
-              <img src={currentVideo.thumbnail} alt={currentVideo.title} className="thumbnail" />
-            )}
-          </div>
 
-          <div className="player-header">
-            {!playlistId ? (
-              <div className="playlist-input">
-                <h2>Enter Youtube Playlist Link:</h2>
-                <input
-                  type="text"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder="Paste Playlist URL here..."
-                />
-                <button onClick={inputPlaylist}>Load Playlist</button>
+        {!playlistId ? (
+          <div className="playlist-input-wrapper">
+            <h2>Enter Youtube Playlist Link:</h2>
+            <div className="input-container">
+              <input
+                className="input"
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="Paste Playlist URL here..."
+              />
+              <button className="input-button" onClick={inputPlaylist}>
+                Load Playlist
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="player-wrapper">
+              {/* If else, If theres a video playing it shows title, if theres not it asks for user to select a video from the playlist */}
+              <div className="player-thumbnail">
+                {currentVideo && (
+                  <img src={currentVideo.thumbnail} alt={currentVideo.title} className="thumbnail" />
+                )}
               </div>
-            ) : (
-              <>
+
+              <div className="player-header">
+
+
                 <div className="player">
                   <h1>{currentVideo ? currentVideo.title : "Select a video to play"}</h1>
                   {currentVideo &&
@@ -115,11 +123,12 @@ const App: React.FC = () => {
                     getNextVideo={getNextVideo}
                   />
                 </div>
-              </>
-            )}
-          </div>
 
-        </div>
+              </div>
+
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
