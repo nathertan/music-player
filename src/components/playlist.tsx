@@ -28,11 +28,20 @@ const Playlist: React.FC<PlaylistProps> = ({ playlistId, onVideoSelect }) => {
         const fetchPlaylist = async () => {
             try {
                 const response = await axios.get(API_URL);
-                let fetchedVideos = response.data.items.map((item: any) => ({
-                    title: item.snippet.title,
-                    videoId: item.snippet.resourceId.videoId,
-                    thumbnail: item.snippet.thumbnails.standard.url,
-                }));
+                let fetchedVideos = response.data.items.map((item: any) => {
+                    const thumbnails = item.snippet.thumbnails;
+                    const thumbnailUrl =
+                        thumbnails.standard?.url ||
+                        thumbnails.high?.url ||
+                        thumbnails.medium?.url ||
+                        thumbnails.default?.url ||
+                        '';
+                    return {
+                        title: item.snippet.title,
+                        videoId: item.snippet.resourceId.videoId,
+                        thumbnail: thumbnailUrl,
+                    }
+                });
 
                 //shuffling playlist
                 let shuffledVideos = fetchedVideos.sort(() => Math.random() - 0.5);
